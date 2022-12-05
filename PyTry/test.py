@@ -1,6 +1,12 @@
-myname = input("type your name: ")
+import PySimpleGUI as sg
 
-for x in range(100):
-    print(myname)
+sg.theme('Dark Grey 13')
 
-input("Press enter to end")
+layout = [[sg.Text('Filename')],
+          [sg.Input(), sg.FileBrowse()],
+          [sg.OK(), sg.Cancel()]]
+
+window = sg.Window('Get filename example', layout)
+
+event, values = window.read()
+window.close()
