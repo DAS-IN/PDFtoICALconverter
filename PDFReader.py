@@ -40,7 +40,7 @@ class PDFReader:
             Output: pd.DataFrame with data from PDF (in a cleaned version)
         '''
         #set first row to column name
-        main_df = main_df.rename(columns = main_df.iloc[1])
+        main_df = main_df.rename(columns = {0: 'Datum / Zeit', 1: 'Bezeichnung', 2: 'Raum', 3: 'Dozent'})
         main_df = main_df.drop(index = [0,1])
 
         #duplicate the 'datum / Uhrzeit' column

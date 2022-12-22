@@ -1,5 +1,7 @@
+import sys
 import PySimpleGUI as sg
 import webbrowser
+import os
 
 class GUI:
     def __init__(self):
@@ -12,7 +14,7 @@ class GUI:
                 }
 
         self.layout = [
-                [sg.Image(r'C:\Eigene Dateien\DAS_IN\Projekte\Logo.png')],
+                [sg.Image(GUI.resource_path('Logo.png'))],
                 [sg.Text('Location of PDF from KU Campus (with lecture timetable):')],
                 [sg.Input(key = '-LocInput-'), sg.FileBrowse(file_types=(('pdf', '*.pdf'),))],
                 [sg.Text('Location of ICAL file to be saved:')],
@@ -23,7 +25,7 @@ class GUI:
             ]
 
         self.layout2 = [
-                [sg.Image(r'C:\Eigene Dateien\DAS_IN\Projekte\Logo.png')],
+                [sg.Image(GUI.resource_path('Logo.png'))],
                 [sg.Text('Thank you for using PDF-to-ICAL-Converter.')],
                 [sg.Text('Your ICAL file is saved to:')],
                 [sg.Input(key = '-LocICAL-', disabled = True)],
@@ -67,6 +69,14 @@ class GUI:
     def windowBuild(layout, finalize: bool):
         sg.theme('DefaultNoMoreNagging')
         return sg.Window('PDF to ICAL Converter', layout, finalize = finalize)
+
+    def resource_path(relative_path):
+        try:
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+
+        return os.path.join(base_path, relative_path)
 
         
         
