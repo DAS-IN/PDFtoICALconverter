@@ -1,4 +1,3 @@
-from email.utils import format_datetime
 from PyPDF2 import PdfFileReader
 import tabula
 import pandas as pd
