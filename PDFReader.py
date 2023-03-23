@@ -40,7 +40,7 @@ class PDFReader:
         '''
         #set first row to column name
         main_df = main_df.rename(columns = {0: 'Datum / Zeit', 1: 'Bezeichnung', 2: 'Raum', 3: 'Dozent'})
-        main_df = main_df.reset_index().drop(index = [0,1,2,3,4])
+        main_df = main_df.reset_index().drop(index = [0,1])
 
         #duplicate the 'datum / Uhrzeit' column
         main_df['Start_Time'] = main_df.loc[:,'Datum / Zeit']
