@@ -6,7 +6,8 @@ from ICALConverter import ICALConverter
 InputData = GUI()
 
 # Get PDF data
-pdf_data = PDFReader(InputData.values['-LocInput-'])
+if InputData.values != False:
+    pdf_data = PDFReader(InputData.values['-LocInput-'])
 
-# Convert into ICAL
-ICALConverter(pdf_data.main_df, InputData.values)
+    # Convert into ICAL
+    ICALConverter(pdf_data.main_df, InputData.values)

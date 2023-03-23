@@ -40,7 +40,7 @@ class GUI:
                 [sg.Text('- https://github.com/das-in', text_color = 'blue', tooltip = urls['GitHub'], enable_events = True, key = urls['GitHub'])],
                 [sg.Text('- https://www.linkedin.com/company/das-in/', text_color = 'blue', tooltip = urls['LinkedIn'], enable_events = True, key = urls['LinkedIn'])],
                 [sg.Text('- https://www.facebook.com/dasingolstadt', text_color = 'blue', tooltip = urls['Facebook'], enable_events = True, key = urls['Facebook'])], 
-                [sg.Button('OK'), sg.Button('Cancel')]
+                [sg.Button('OK')]
             ]
         
         self.window = GUI.windowBuild(self.layout, False)
@@ -51,16 +51,21 @@ class GUI:
         while True:
             event, values = window.read()
             # End program if user cloeses window or presses OK
-            if event == 'OK' or event == sg.WIN_CLOSED or event == 'Cancel':
+            if event == 'OK': 
                 window2['-LocICAL-'].update(str(values['-LocICAL-']))
-                window.close()
-                while True:
-                    event2, values2 = window2.read()
+            elif event == 'Cancel' or event == sg.WIN_CLOSED:
+                values = False
+            window.close()
+            
+            while True:
+                event2, values2 = window2.read()
+                if event2 != None:
                     if event2.startswith('https://'):
                         webbrowser.open(event2)
                     if event2 == 'OK' or event2 == sg.WIN_CLOSED or event2 == 'Cancel':
                         break
-                break
+            break
+            
 
         window2.close()
 
